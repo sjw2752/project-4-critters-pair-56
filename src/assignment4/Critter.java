@@ -103,6 +103,8 @@ public abstract class Critter {
      */
     public static void clearWorld() {
         // TODO: Complete this method
+        CritterWorld.clearCollection();
+        displayWorld();
     }
 
     public static void worldTimeStep() {

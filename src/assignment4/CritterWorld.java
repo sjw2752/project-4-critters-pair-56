@@ -14,4 +14,8 @@ public class CritterWorld {
         return critterCollection;
     }
 
+    public static void clearCollection() {
+        critterCollection.removeAll(critterCollection);
+    }
+
 }
