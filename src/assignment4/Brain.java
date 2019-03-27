@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * Wise critter, fight only when it has energy
  */
-public class MyCritter1 extends Critter.TestCritter {
+public class Brain extends Critter.TestCritter {
 
 	@Override
 	public void doTimeStep() {

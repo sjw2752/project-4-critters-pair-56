@@ -2,8 +2,8 @@ package assignment4;
 /* CRITTERS Critter.java
  * EE422C Project 4 submission by
  * Replace <...> with your actual data.
- * <Student1 Name>
- * <Student1 EID>
+ * Sam Wang
+ * sjw2752
  * <Student1 5-digit Unique No.>
  * <Student2 Name>
  * <Student2 EID>
@@ -57,6 +57,19 @@ public abstract class Critter {
      */
     public static void createCritter(String critter_class_name) throws InvalidCritterException {
         // TODO: Complete this method
+        try {
+            Class critterTest = Class.forName(myPackage + critter_class_name);
+            Object critterNew = (Object)critterTest.newInstance();
+        }
+        catch (ClassNotFoundException e) {
+            throw new InvalidCritterException(critter_class_name);
+        }
+        catch (InstantiationException e) {
+            throw new InvalidCritterException(critter_class_name);
+        }
+        catch (IllegalAccessException e) {
+            throw new InvalidCritterException(critter_class_name);
+        }
     }
 
     /**

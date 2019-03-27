@@ -2,9 +2,9 @@ package assignment4;
 
 import assignment4.Critter.TestCritter;
 /**
- * Fighter, always fight when encounter other critters.
+ * Runner, always run when encounter other critters.
  */
-public class MyCritter7 extends TestCritter {
+public class Speedy extends TestCritter {
 
 	@Override
 	public void doTimeStep() {
@@ -12,12 +12,12 @@ public class MyCritter7 extends TestCritter {
 
 	@Override
 	public boolean fight(String opponent) {
-
-		return true;
+		run(getRandomInt(8));
+		return false;
 	}
 
 	@Override
 	public String toString () {
-		return "7";
+		return "6";
 	}
 }
