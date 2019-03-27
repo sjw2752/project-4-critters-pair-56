@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class CritterWorld {
 
-    private ArrayList<Critter> critterCollection = new ArrayList<>();
+    private static ArrayList<Critter> critterCollection = new ArrayList<>();
 
-    private void addCritters (Critter critterNew) {
+    public static void addCritters (Critter critterNew) {
         critterCollection.add(critterNew);
     }
 
-    private ArrayList<Critter> getCritters () {
+    public static ArrayList<Critter> getCritters () {
         return critterCollection;
     }
 

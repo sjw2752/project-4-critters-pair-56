@@ -13,6 +13,8 @@ package assignment4;
  */
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /* see the PDF for descriptions of the methods and fields in this class
@@ -58,8 +60,11 @@ public abstract class Critter {
     public static void createCritter(String critter_class_name) throws InvalidCritterException {
         // TODO: Complete this method
         try {
-            Class critterTest = Class.forName(myPackage + critter_class_name);
-            Object critterNew = (Object)critterTest.newInstance();
+            Class critterTest = Class.forName(myPackage + "." + critter_class_name);
+            if (critterTest.isAssignableFrom(Critter.class)) {
+                Critter critterNew = (Critter)critterTest.newInstance();
+                CritterWorld.addCritters(critterNew);
+            }
         }
         catch (ClassNotFoundException e) {
             throw new InvalidCritterException(critter_class_name);
@@ -81,7 +86,16 @@ public abstract class Critter {
      */
     public static List<Critter> getInstances(String critter_class_name) throws InvalidCritterException {
         // TODO: Complete this method
-        return null;
+        ArrayList<Critter> critterList = new ArrayList<>();
+        ArrayList<Critter> critterCollection = CritterWorld.getCritters();
+
+        for (Critter critter : critterCollection) {
+            if (critter.getClass().getName().equals(critter_class_name)) {
+                critterList.add(critter);
+            }
+        }
+
+        return critterList;
     }
 
     /**
