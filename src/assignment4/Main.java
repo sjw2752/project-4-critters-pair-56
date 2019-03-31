@@ -12,6 +12,8 @@ package assignment4;
  * Spring 2019
  */
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 
@@ -98,9 +100,29 @@ public class Main {
                 String critterType = kb.next();
                 if (kb.hasNextInt()) {
                     for (int i = 0; i < kb.nextInt(); i++) {
-
+                        try {
+                            Critter.createCritter(critterType);
+                        }
+                        catch (InvalidCritterException e) {
+                            System.out.println(e);
+                            commandInterpreter(kb);
+                        }
                     }
                 }
+            case "stats":
+                critterType = kb.next();
+                try {
+                    List<Critter> critterInstances = new ArrayList<>();
+                    critterInstances = Critter.getInstances(critterType);
+                    Critter.runStats(critterInstances);
+                }
+                catch (InvalidCritterException e) {
+                    System.out.println(e);
+                    commandInterpreter(kb);
+                }
+            case "clear":
+                Critter.clearWorld();
         }
     }
+
 }
