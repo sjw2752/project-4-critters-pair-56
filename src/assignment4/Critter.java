@@ -153,7 +153,38 @@ public abstract class Critter {
             }
         }
     }
-    
+    private static void doEncounters(Critter one, Critter two){
+
+        boolean oneChoice = (one.fight(two.toString()));
+        boolean twoChoice =(two.fight(one.toString()));
+
+        //if both want to fight
+        if(!(oneChoice == twoChoice && !oneChoice)) {
+            int oneNum;
+            int twoNum;
+            if (oneChoice) {
+                oneNum = getRandomInt(6);
+            } else {
+                oneNum = 0;
+            }
+            if (twoChoice) {
+                twoNum = getRandomInt(6);
+            } else {
+                twoNum = 0;
+            }
+            //compare
+            //if one wins
+            if(oneNum > twoNum || oneNum == twoNum){
+                one.energy = one.energy + (two.energy/2);
+                two.energy = 0;
+            }
+            else{
+                two.energy = two.energy + (one.energy/2);
+                one.energy = 0;
+            }
+        }
+
+    }
     public static void displayWorld() {
         // TODO: Complete this method
         String[][] world = new String[Params.WORLD_WIDTH + 2][Params.WORLD_HEIGHT + 2];
