@@ -18,7 +18,7 @@ public class Brain extends Critter.TestCritter {
 	}
 
 	public String toString() {
-		return "1";
+		return "Brain";
 	}
 
 	public void test (List<Critter> l) {

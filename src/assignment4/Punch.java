@@ -18,6 +18,6 @@ public class Punch extends TestCritter {
 
 	@Override
 	public String toString () {
-		return "7";
+		return "Punch";
 	}
 }

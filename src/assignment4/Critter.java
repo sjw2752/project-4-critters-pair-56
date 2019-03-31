@@ -63,7 +63,10 @@ public abstract class Critter {
             Class critterTest = Class.forName(myPackage + "." + critter_class_name);
             if (critterTest.isAssignableFrom(Critter.class)) {
                 Critter critterNew = (Critter)critterTest.newInstance();
-                CritterWorld.addCritters(critterNew);
+                critterNew.energy = Params.START_ENERGY;
+                critterNew.x_coord = rand.nextInt(Params.WORLD_WIDTH);
+                critterNew.y_coord = rand.nextInt(Params.WORLD_HEIGHT);
+                population.add(critterNew);
             }
         }
         catch (ClassNotFoundException e) {
@@ -87,10 +90,17 @@ public abstract class Critter {
     public static List<Critter> getInstances(String critter_class_name) throws InvalidCritterException {
         // TODO: Complete this method
         ArrayList<Critter> critterList = new ArrayList<>();
-        ArrayList<Critter> critterCollection = CritterWorld.getCritters();
+        Class<? testClass;
 
-        for (Critter critter : critterCollection) {
-            if (critter.getClass().getName().equals(critter_class_name)) {
+        try {
+            testClass = Class.forName(critter_class_name);
+        }
+        catch (ClassNotFoundException e) {
+            throw new InvalidCritterException(critter_class_name);
+        }
+
+        for (Critter critter : population) {
+            if (testClass.isInstance(critter)) {
                 critterList.add(critter);
             }
         }
@@ -113,6 +123,35 @@ public abstract class Critter {
 
     public static void displayWorld() {
         // TODO: Complete this method
+        String[][] world = new String[Params.WORLD_WIDTH + 2][Params.WORLD_HEIGHT + 2];
+
+        for (int i = 0; i < Params.WORLD_WIDTH + 2; i++) {
+            for (int j = 0; j < Params.WORLD_HEIGHT + 2; j++) {
+                if ((i == 0 && (j == 0 || j == Params.WORLD_WIDTH + 1)) || (i == Params.WORLD_HEIGHT + 1 && (j == 0 || j == Params.WORLD_WIDTH + 1))) {
+                    world[i][j] = "+";
+                }
+                else if (i == 0 || i == Params.WORLD_HEIGHT + 1) {
+                    world[i][j] = "-";
+                }
+                else if (j == 0 || j == Params.WORLD_WIDTH + 1) {
+                    world[i][j] = "|";
+                }
+                else {
+                    world[i][j] = " ";
+                }
+            }
+        }
+
+        for (Critter critter : population) {
+            world[critter.y_coord][critter.x_coord] = critter.toString();
+        }
+
+        for (int i = 0; i < Params.WORLD_WIDTH + 2; i++) {
+            for (int j = 0; j < Params.WORLD_HEIGHT + 2; j++) {
+                System.out.print(world[i][j]);
+            }
+            System.out.println();
+        }
     }
 
     /**
@@ -154,7 +193,6 @@ public abstract class Critter {
 
     protected final void run(int direction) {
         // TODO: Complete this method
-
     }
 
     protected final void reproduce(Critter offspring, int direction) {
