@@ -190,7 +190,7 @@ public abstract class Critter {
         boolean twoChoice =(two.fight(one.toString()));
 
         //if both want to fight
-        if(!(oneChoice == twoChoice && !oneChoice)) {
+        if(!(oneChoice == twoChoice && !oneChoice) && (one.energy>0) && (two.energy>0)) {
             int oneNum;
             int twoNum;
             if (oneChoice) {
@@ -286,12 +286,120 @@ public abstract class Critter {
 
     protected final void walk(int direction) {
         // TODO: Complete this method
+        move(direction);
+        this.energy = this.energy - Params.WALK_ENERGY_COST;
     }
 
     protected final void run(int direction) {
         // TODO: Complete this method
+        move(direction);
+        move(direction);
+        this.energy = this.energy - Params.WALK_ENERGY_COST;
     }
 
+    //this method changes the coordinates and is called by run and walk methods
+    private void move(int direction){
+        switch (direction){
+            //straight right
+            case 0:
+                if(this.x_coord == Params.WORLD_WIDTH){
+                    this.x_coord = 1;
+                }
+                else{
+                    this.x_coord += 1;
+                }
+                break;
+            //diag up, right
+            case 1:
+                if(this.x_coord == Params.WORLD_WIDTH){
+                    this.x_coord = 1;
+                }
+                else{
+                    this.x_coord += 1;
+                }
+                if(this.y_coord == 1){
+                    this.y_coord = Params.WORLD_HEIGHT;
+                }
+                else{
+                    this.y_coord -= 1;
+                }
+                break;
+            //straight up
+            case 2:
+                if(this.y_coord == 1){
+                    this.y_coord = Params.WORLD_HEIGHT;
+                }
+                else{
+                    this.y_coord -= 1;
+                }
+                break;
+            //diag up, left
+            case 3:
+                if(this.x_coord == 1){
+                    this.x_coord = Params.WORLD_WIDTH;
+                }
+                else{
+                    this.x_coord -= 1;
+                }
+                if(this.y_coord == 1){
+                    this.y_coord = Params.WORLD_HEIGHT;
+                }
+                else{
+                    this.y_coord -= 1;
+                }
+                break;
+            //straight left
+            case 4:
+                if(this.x_coord == 1){
+                    this.x_coord = Params.WORLD_WIDTH;
+                }
+                else{
+                    this.x_coord -= 1;
+                }
+                break;
+            //diag down left
+            case 5:
+                if(this.x_coord == 1){
+                    this.x_coord = Params.WORLD_WIDTH;
+                }
+                else{
+                    this.x_coord -= 1;
+                }
+                if(this.y_coord == Params.WORLD_HEIGHT){
+                    this.y_coord = 1;
+                }
+                else{
+                    this.y_coord += 1;
+                }
+                break;
+            //straight down
+            case 6:
+                if(this.y_coord == Params.WORLD_HEIGHT){
+                    this.y_coord = 1;
+                }
+                else{
+                    this.y_coord += 1;
+                }
+                break;
+            //diag down right
+            case 7:
+                if(this.x_coord == Params.WORLD_WIDTH){
+                    this.x_coord = 1;
+                }
+                else{
+                    this.x_coord += 1;
+                }
+                if(this.y_coord == Params.WORLD_HEIGHT){
+                    this.y_coord = 1;
+                }
+                else{
+                    this.y_coord += 1;
+                }
+                break;
+        }
+    }
+
+    
     protected final void reproduce(Critter offspring, int direction) {
         // TODO: Complete this method
     }
