@@ -142,17 +142,48 @@ public abstract class Critter {
                 if(one.y_coord==two.y_coord && one.x_coord == two.x_coord){
                     doEncounters(one,two);
                     //if one died, then remove
-                    if(one.energy == 0){
+                    if(one.energy <= 0){
                         iter1.remove();
                     }
                     //if two died, then remove
-                    if(two.energy == 0){
+                    if(two.energy <= 0){
                         iter2.remove();
                     }
                 }
             }
         }
+        //subtract rest energy
+        updateRestEnergy();
+        //generate clovers
+        genClover();
+        //add babies to the population
+        population.addAll(babies);
+        babies.clear();
     }
+    
+    //this method subtracts rest energy from the population of critters
+    //AND removes the dead ones
+    private static void updateRestEnergy(){
+
+        for(Critter i : population){
+            i.energy -= Params.REST_ENERGY_COST;
+            if(i.energy <= 0){
+                population.remove(i);
+            }
+        }
+    }
+
+    private static void genClover(){
+        for(int i = 0; i < Params.REFRESH_CLOVER_COUNT; i++){
+            Critter newClover = new Clover();
+            newClover.energy = Params.START_ENERGY;
+            newClover.x_coord = rand.nextInt(Params.WORLD_WIDTH);
+            newClover.y_coord = rand.nextInt(Params.WORLD_HEIGHT);
+            population.add(newClover);
+
+        }
+    }
+    
     private static void doEncounters(Critter one, Critter two){
 
         boolean oneChoice = (one.fight(two.toString()));
@@ -185,6 +216,8 @@ public abstract class Critter {
         }
 
     }
+    
+   
     public static void displayWorld() {
         // TODO: Complete this method
         String[][] world = new String[Params.WORLD_WIDTH + 2][Params.WORLD_HEIGHT + 2];
