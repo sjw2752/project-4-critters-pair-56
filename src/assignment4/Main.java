@@ -83,9 +83,11 @@ public class Main {
         switch(userInput) {
             case "quit":
                 return;
+
             case "show":
                 Critter.displayWorld();
                 break;
+
             case "step":
                 if (kb.hasNextInt()) {
                     CritterWorld.timeStep = kb.nextInt();
@@ -94,21 +96,26 @@ public class Main {
                 for (int i = 0; i < CritterWorld.timeStep; i++) {
                     Critter.worldTimeStep();
                 }
+                break;
+
             case "seed":
                 Critter.setSeed(kb.nextLong());
+                break;
+
             case "create":
                 String critterType = kb.next();
                 if (kb.hasNextInt()) {
                     for (int i = 0; i < kb.nextInt(); i++) {
                         try {
                             Critter.createCritter(critterType);
-                        }
-                        catch (InvalidCritterException e) {
+                        } catch (InvalidCritterException e) {
                             System.out.println(e);
                             commandInterpreter(kb);
                         }
                     }
                 }
+                break;
+
             case "stats":
                 critterType = kb.next();
                 try {
@@ -120,8 +127,11 @@ public class Main {
                     System.out.println(e);
                     commandInterpreter(kb);
                 }
+                break;
+
             case "clear":
                 Critter.clearWorld();
+                break;
         }
     }
 
