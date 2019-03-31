@@ -190,16 +190,16 @@ public abstract class Critter {
         boolean twoChoice =(two.fight(one.toString()));
 
         //if both want to fight
-        if(!(oneChoice == twoChoice && !oneChoice) && (one.energy>0) && (two.energy>0)) {
+        if(!(oneChoice == twoChoice && !oneChoice) && (one.energy>0) && (two.energy>0) && (one.x_coord == two.x_coord) && (one.y_coord == two.y_coord)) {
             int oneNum;
             int twoNum;
             if (oneChoice) {
-                oneNum = getRandomInt(6);
+                oneNum = getRandomInt(one.energy);
             } else {
                 oneNum = 0;
             }
             if (twoChoice) {
-                twoNum = getRandomInt(6);
+                twoNum = getRandomInt(two.energy);
             } else {
                 twoNum = 0;
             }
