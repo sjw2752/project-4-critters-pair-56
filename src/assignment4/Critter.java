@@ -4,10 +4,10 @@ package assignment4;
  * Replace <...> with your actual data.
  * Sam Wang
  * sjw2752
- * <Student1 5-digit Unique No.>
- * <Student2 Name>
- * <Student2 EID>
- * <Student2 5-digit Unique No.>
+ * 16215
+ * Iris Ham
+ * ih4548
+ * 16215
  * Slip days used: <0>
  * Fall 2016
  */
@@ -16,6 +16,7 @@ package assignment4;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 /* see the PDF for descriptions of the methods and fields in this class
  * you may add fields, methods or inner classes to Critter ONLY if you make your additions private
@@ -119,8 +120,40 @@ public abstract class Critter {
 
     public static void worldTimeStep() {
         // TODO: Complete this method
-    }
+        //doTimeStep for each critter
+        for(int i = 0; i < population.size(); i++){
+            population.get(i).doTimeStep();
+        }
+        //remove all the dead critters from doTimeStep
+        for(int i = 0; i < population.size(); i++){
+            if(population.get(i).energy<=0){
+                population.remove(population.get(i));
+            }
+        }
+        //doEncounters
+        Iterator<Critter> iter1 = population.iterator();
+        Iterator<Critter> iter2 = population.iterator();
 
+        while(iter1.hasNext()){
+            Critter one = iter1.next();
+            while(iter2.hasNext()) {
+                Critter two = iter1.next();
+                //if same position, do encounters
+                if(one.y_coord==two.y_coord && one.x_coord == two.x_coord){
+                    doEncounters(one,two);
+                    //if one died, then remove
+                    if(one.energy == 0){
+                        iter1.remove();
+                    }
+                    //if two died, then remove
+                    if(two.energy == 0){
+                        iter2.remove();
+                    }
+                }
+            }
+        }
+    }
+    
     public static void displayWorld() {
         // TODO: Complete this method
         String[][] world = new String[Params.WORLD_WIDTH + 2][Params.WORLD_HEIGHT + 2];
