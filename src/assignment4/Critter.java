@@ -17,6 +17,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+import java.lang.Math;
 
 /* see the PDF for descriptions of the methods and fields in this class
  * you may add fields, methods or inner classes to Critter ONLY if you make your additions private
@@ -294,7 +295,7 @@ public abstract class Critter {
         // TODO: Complete this method
         move(direction);
         move(direction);
-        this.energy = this.energy - Params.WALK_ENERGY_COST;
+        this.energy = this.energy - Params.RUN_ENERGY_COST;
     }
 
     //this method changes the coordinates and is called by run and walk methods
@@ -402,6 +403,13 @@ public abstract class Critter {
     
     protected final void reproduce(Critter offspring, int direction) {
         // TODO: Complete this method
+        //check if parent has energy
+        if(this.energy > Params.MIN_REPRODUCE_ENERGY){
+            offspring.energy = this.energy/2;
+            this.energy = Math.round(this.energy/(float)2);
+            offspring.move(direction);
+            babies.add(offspring);
+        }
     }
 
     /**
