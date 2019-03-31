@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class CritterWorld {
 
     private static ArrayList<Critter> critterCollection = new ArrayList<>();
+    public static int timeStep;
 
     public static void addCritters (Critter critterNew) {
         critterCollection.add(critterNew);

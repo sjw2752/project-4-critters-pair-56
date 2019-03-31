@@ -90,7 +90,7 @@ public abstract class Critter {
     public static List<Critter> getInstances(String critter_class_name) throws InvalidCritterException {
         // TODO: Complete this method
         ArrayList<Critter> critterList = new ArrayList<>();
-        Class<? testClass;
+        Class<?> testClass;
 
         try {
             testClass = Class.forName(critter_class_name);
@@ -113,7 +113,7 @@ public abstract class Critter {
      */
     public static void clearWorld() {
         // TODO: Complete this method
-        CritterWorld.clearCollection();
+        population.clear();
         displayWorld();
     }
 

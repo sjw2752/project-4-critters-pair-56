@@ -75,5 +75,32 @@ public class Main {
 
     private static void commandInterpreter (Scanner kb) {
         //TODO Implement this method
+        System.out.print("critters> ");
+        String userInput = kb.next();
+
+        switch(userInput) {
+            case "quit":
+                return;
+            case "show":
+                Critter.displayWorld();
+                break;
+            case "step":
+                if (kb.hasNextInt()) {
+                    CritterWorld.timeStep = kb.nextInt();
+                }
+                CritterWorld.timeStep = 1;
+                for (int i = 0; i < CritterWorld.timeStep; i++) {
+                    Critter.worldTimeStep();
+                }
+            case "seed":
+                Critter.setSeed(kb.nextLong());
+            case "create":
+                String critterType = kb.next();
+                if (kb.hasNextInt()) {
+                    for (int i = 0; i < kb.nextInt(); i++) {
+
+                    }
+                }
+        }
     }
 }
