@@ -20,7 +20,7 @@ public class Critter1 extends Critter {
 
     @Override
     public String toString() {
-        return "Critter1";
+        return "1";
     }
 
 }

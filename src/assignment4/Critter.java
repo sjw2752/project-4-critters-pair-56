@@ -161,23 +161,24 @@ public abstract class Critter {
     public static void worldTimeStep() {
         // TODO: Complete this method
         //doTimeStep for each critter
-        for(int i = 0; i < population.size(); i++){
+        for (int i = 0; i < population.size(); i++){
             population.get(i).doTimeStep();
         }
         //remove all the dead critters from doTimeStep
-        for(int i = 0; i < population.size(); i++){
-            if(population.get(i).energy<=0){
+        for (int i = 0; i < population.size(); i++){
+            if (population.get(i).energy <= 0){
                 population.remove(population.get(i));
             }
         }
         //doEncounters
         Iterator<Critter> iter1 = population.iterator();
         Iterator<Critter> iter2 = population.iterator();
+        iter1.next();
 
         while(iter1.hasNext()){
             Critter one = iter1.next();
             while(iter2.hasNext()) {
-                Critter two = iter1.next();
+                Critter two = iter2.next();
                 //if same position, do encounters
                 if(one.y_coord==two.y_coord && one.x_coord == two.x_coord){
                     doEncounters(one,two);

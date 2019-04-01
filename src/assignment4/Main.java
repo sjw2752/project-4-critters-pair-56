@@ -111,7 +111,7 @@ public class Main {
                 break;
 
             case "create":
-                if (userInputSplit.length != 2) {
+                if (userInputSplit.length > 3 || userInputSplit.length < 2) {
                     System.out.println("Unknown Command");
                     break;
                 }
