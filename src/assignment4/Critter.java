@@ -43,6 +43,10 @@ public abstract class Critter {
 
     private static java.util.Random rand = new java.util.Random();
 
+    Critter(){
+        energy = Params.START_ENERGY;
+    }
+
     public static int getRandomInt(int max) {
         return rand.nextInt(max);
     }
@@ -404,9 +408,9 @@ public abstract class Critter {
     protected final void reproduce(Critter offspring, int direction) {
         // TODO: Complete this method
         //check if parent has energy
-        if(this.energy > Params.MIN_REPRODUCE_ENERGY){
-            offspring.energy = this.energy/2;
-            this.energy = Math.round(this.energy/(float)2);
+        if (this.energy > Params.MIN_REPRODUCE_ENERGY) {
+            offspring.energy = this.energy / 2;
+            this.energy = Math.round(this.energy / (float)2);
             offspring.move(direction);
             babies.add(offspring);
         }
