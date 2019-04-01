@@ -102,10 +102,20 @@ public class Main {
                 break;
 
             case "seed":
+                if (userInputSplit.length != 2) {
+                    System.out.println("Unknown Command");
+                    break;
+                }
+
                 Critter.setSeed(Long.parseLong(userInputSplit[1]));
                 break;
 
             case "create":
+                if (userInputSplit.length != 2) {
+                    System.out.println("Unknown Command");
+                    break;
+                }
+
                 String critterType = userInputSplit[1];
                 int critterNum = 1;
                 if (userInputSplit.length > 2) {
@@ -122,6 +132,11 @@ public class Main {
                 break;
 
             case "stats":
+                if (userInputSplit.length != 2) {
+                    System.out.println("Unknown Command");
+                    break;
+                }
+
                 critterType = userInputSplit[1];
                 try {
                     List<Critter> critterInstances = new ArrayList<>();
@@ -136,6 +151,10 @@ public class Main {
 
             case "clear":
                 Critter.clearWorld();
+                break;
+
+            default:
+                System.out.println("Unknown Command");
                 break;
         }
         commandInterpreter(kb);
