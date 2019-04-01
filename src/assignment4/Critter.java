@@ -116,8 +116,8 @@ public abstract class Critter {
 
         Critter critterNew = (Critter)object;
         critterNew.energy = Params.START_ENERGY;
-        critterNew.x_coord = rand.nextInt(Params.WORLD_WIDTH) + 1;
-        critterNew.y_coord = rand.nextInt(Params.WORLD_HEIGHT) + 1;
+        critterNew.x_coord = (rand.nextInt(Params.WORLD_WIDTH) + 1);
+        critterNew.y_coord = (rand.nextInt(Params.WORLD_HEIGHT) + 1);
         population.add(critterNew);
     }
 
@@ -478,6 +478,8 @@ public abstract class Critter {
         if (this.energy > Params.MIN_REPRODUCE_ENERGY) {
             offspring.energy = this.energy / 2;
             this.energy = Math.round(this.energy / (float)2);
+            offspring.x_coord = this.x_coord;
+            offspring.y_coord = this.y_coord;
             offspring.move(direction);
             babies.add(offspring);
         }

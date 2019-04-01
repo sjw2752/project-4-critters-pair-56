@@ -4,11 +4,6 @@
     <list default="true" id="d8a7e281-d0ab-409b-a8c5-1cd900b124a2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assignment4/Critter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignment4/Critter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assignment4/Critter1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignment4/Critter1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assignment4/Critter2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignment4/Critter2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assignment4/Critter3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignment4/Critter3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assignment4/Critter4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignment4/Critter4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assignment4/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/assignment4/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +17,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment4/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-352">
+            <state relative-caret-position="144">
               <caret line="113" column="74" selection-start-line="113" selection-start-column="74" selection-end-line="113" selection-end-column="74" />
             </state>
           </provider>
@@ -31,12 +26,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assignment4/Critter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="206" column="43" lean-forward="true" selection-start-line="206" selection-start-column="43" selection-end-line="206" selection-end-column="43" />
+            <state relative-caret-position="129">
+              <caret line="314" column="73" lean-forward="true" selection-start-line="314" selection-start-column="73" selection-end-line="314" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10925#10926#0" expanded="true" />
-                <element signature="e#10987#10988#0" expanded="true" />
+                <element signature="e#12107#12108#0" expanded="true" />
+                <element signature="e#12169#12170#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment4/Critter1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+            <state relative-caret-position="105">
+              <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -185,12 +180,12 @@
       <option name="presentableId" value="Default" />
       <updated>1554110337013</updated>
       <workItem from="1554110338303" duration="2196000" />
-      <workItem from="1554137957949" duration="1664000" />
+      <workItem from="1554137957949" duration="6590000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3860000" />
+    <option name="totallyTimeSpent" value="8786000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -238,13 +233,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignment4/Critter2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment4/Critter3.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -259,28 +247,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assignment4/Critter1.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        <state relative-caret-position="208">
+          <caret line="872" selection-start-line="872" selection-end-line="872" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/Critter2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment4/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-352">
+        <state relative-caret-position="144">
           <caret line="113" column="74" selection-start-line="113" selection-start-column="74" selection-end-line="113" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assignment4/Critter1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assignment4/Critter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="206" column="43" lean-forward="true" selection-start-line="206" selection-start-column="43" selection-end-line="206" selection-end-column="43" />
+        <state relative-caret-position="129">
+          <caret line="314" column="73" lean-forward="true" selection-start-line="314" selection-start-column="73" selection-end-line="314" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10925#10926#0" expanded="true" />
-            <element signature="e#10987#10988#0" expanded="true" />
+            <element signature="e#12107#12108#0" expanded="true" />
+            <element signature="e#12169#12170#0" expanded="true" />
           </folding>
         </state>
       </provider>
