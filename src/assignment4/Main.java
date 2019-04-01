@@ -78,10 +78,12 @@ public class Main {
     private static void commandInterpreter (Scanner kb) {
         //TODO Implement this method
         System.out.print("critters> ");
-        String userInput = kb.next();
+        String userInput = kb.nextLine();
+        String[] userInputSplit = userInput.split("\\s+");
 
-        switch(userInput) {
+        switch(userInputSplit[0]) {
             case "quit":
+                kb.close();
                 return;
 
             case "show":
@@ -89,35 +91,38 @@ public class Main {
                 break;
 
             case "step":
-                if (kb.hasNextInt()) {
-                    CritterWorld.timeStep = kb.nextInt();
+                if (userInputSplit.length > 1) {
+                    CritterWorld.timeStep = Integer.parseInt(userInputSplit[1]);
+                } else {
+                    CritterWorld.timeStep = 1;
                 }
-                CritterWorld.timeStep = 1;
                 for (int i = 0; i < CritterWorld.timeStep; i++) {
                     Critter.worldTimeStep();
                 }
                 break;
 
             case "seed":
-                Critter.setSeed(kb.nextLong());
+                Critter.setSeed(Long.parseLong(userInputSplit[1]));
                 break;
 
             case "create":
-                String critterType = kb.next();
-                if (kb.hasNextInt()) {
-                    for (int i = 0; i < kb.nextInt(); i++) {
-                        try {
-                            Critter.createCritter(critterType);
-                        } catch (InvalidCritterException e) {
-                            System.out.println(e);
-                            commandInterpreter(kb);
-                        }
+                String critterType = userInputSplit[1];
+                int critterNum = 1;
+                if (userInputSplit.length > 2) {
+                    critterNum = Integer.parseInt(userInputSplit[2]);
+                }
+                for (int i = 0; i < critterNum; i++) {
+                    try {
+                        Critter.createCritter(critterType);
+                    } catch (InvalidCritterException e) {
+                        System.out.println(e);
+                        commandInterpreter(kb);
                     }
                 }
                 break;
 
             case "stats":
-                critterType = kb.next();
+                critterType = userInputSplit[1];
                 try {
                     List<Critter> critterInstances = new ArrayList<>();
                     critterInstances = Critter.getInstances(critterType);
@@ -133,6 +138,7 @@ public class Main {
                 Critter.clearWorld();
                 break;
         }
+        commandInterpreter(kb);
     }
 
 }

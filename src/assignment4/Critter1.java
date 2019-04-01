@@ -1,22 +1,26 @@
 package assignment4;
 
-import java.util.List;
-
 public class Critter1 extends Critter {
-    // Heart Attack Critter
+    // Gambler Critter
+    // fights if energy is <= half energy
+    // doesn't move
 
     @Override
     public void doTimeStep() {
-        walk(0);
+        if (getEnergy() > 50) {
+            Critter1 critterBaby = new Critter1();
+            reproduce(critterBaby, getRandomInt(8));
+        }
     }
 
     @Override
     public boolean fight(String opponent) {
-
+        return (getEnergy() <= 50);
     }
 
+    @Override
     public String toString() {
-        return "Brain";
+        return "Critter1";
     }
 
 }
