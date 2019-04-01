@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 import java.lang.Math;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 /* see the PDF for descriptions of the methods and fields in this class
  * you may add fields, methods or inner classes to Critter ONLY if you make your additions private
@@ -65,25 +67,58 @@ public abstract class Critter {
      */
     public static void createCritter(String critter_class_name) throws InvalidCritterException {
         // TODO: Complete this method
+//        try {
+//            Class critterTest = Class.forName(myPackage + "." + critter_class_name);
+//            if (critterTest.isAssignableFrom(Critter.class)) {
+//                Critter critterNew = (Critter)critterTest.newInstance();
+//                critterNew.energy = Params.START_ENERGY;
+//                critterNew.x_coord = rand.nextInt(Params.WORLD_WIDTH);
+//                critterNew.y_coord = rand.nextInt(Params.WORLD_HEIGHT);
+//                population.add(critterNew);
+//            }
+//        }
+//        catch (ClassNotFoundException e) {
+//            throw new InvalidCritterException(critter_class_name);
+//        }
+//        catch (InstantiationException e) {
+//            throw new InvalidCritterException(critter_class_name);
+//        }
+//        catch (IllegalAccessException e) {
+//            throw new InvalidCritterException(critter_class_name);
+//        }
+        Class<?> critterTest;
+        Object object;
+        Constructor<?> critterConstructor;
         try {
-            Class critterTest = Class.forName(myPackage + "." + critter_class_name);
-            if (critterTest.isAssignableFrom(Critter.class)) {
-                Critter critterNew = (Critter)critterTest.newInstance();
-                critterNew.energy = Params.START_ENERGY;
-                critterNew.x_coord = rand.nextInt(Params.WORLD_WIDTH);
-                critterNew.y_coord = rand.nextInt(Params.WORLD_HEIGHT);
-                population.add(critterNew);
-            }
-        }
-        catch (ClassNotFoundException e) {
+            critterTest = Class.forName(myPackage + "." + critter_class_name);
+        } catch (ClassNotFoundException e) {
             throw new InvalidCritterException(critter_class_name);
         }
-        catch (InstantiationException e) {
+        try {
+            critterConstructor = critterTest.getConstructor();
+        } catch (NoSuchMethodException e) {
             throw new InvalidCritterException(critter_class_name);
         }
-        catch (IllegalAccessException e) {
+        try {
+            object = critterConstructor.newInstance();
+        } catch (InstantiationException e) {
+            throw new InvalidCritterException(critter_class_name);
+        } catch (IllegalAccessException e) {
+            throw new InvalidCritterException(critter_class_name);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidCritterException(critter_class_name);
+        } catch (InvocationTargetException e) {
             throw new InvalidCritterException(critter_class_name);
         }
+        if (!(object instanceof Critter)) {
+            throw new InvalidCritterException(critter_class_name);
+        }
+
+        Critter critterNew = (Critter)object;
+        critterNew.energy = Params.START_ENERGY;
+        critterNew.x_coord = rand.nextInt(Params.WORLD_WIDTH) + 1;
+        critterNew.y_coord = rand.nextInt(Params.WORLD_HEIGHT) + 1;
+        population.add(critterNew);
     }
 
     /**
