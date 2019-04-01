@@ -170,26 +170,53 @@ public abstract class Critter {
                 population.remove(population.get(i));
             }
         }
-        //doEncounters
-        Iterator<Critter> iter1 = population.iterator();
-        Iterator<Critter> iter2 = population.iterator();
-        iter1.next();
+//doEncounters
+//        Iterator<Critter> iter1 = population.iterator();
+//        Iterator<Critter> iter2 = population.iterator();
+//        iter1.next();
+//
+//        while(iter1.hasNext()){
+//            Critter one = iter1.next();
+//            while(iter2.hasNext()) {
+//                Critter two = iter2.next();
+//                //if same position, do encounters
+//                if(one.y_coord==two.y_coord && one.x_coord == two.x_coord){
+//                    doEncounters(one,two);
+//                    //if one died, then remove
+//                    if(one.energy <= 0){
+//                        iter1.remove();
+//                    }
+//                    //if two died, then remove
+//                    if(two.energy <= 0){
+//                        iter2.remove();
+//                    }
+//                }
+//            }
+//        }
+        
+        List<Critter> record = population;
 
-        while(iter1.hasNext()){
-            Critter one = iter1.next();
-            while(iter2.hasNext()) {
-                Critter two = iter2.next();
-                //if same position, do encounters
-                if(one.y_coord==two.y_coord && one.x_coord == two.x_coord){
-                    doEncounters(one,two);
-                    //if one died, then remove
-                    if(one.energy <= 0){
-                        iter1.remove();
+        for(int i = 0; i < record.size(); i++) {
+            if (population.contains(record.get(i))) {
+                Iterator<Critter> iter1 = population.iterator();
+                Critter compare = iter1.next();
+
+                while (iter1.hasNext()) {
+                    if (!(compare.equals(record.get(i)))) {
+                        if (compare.x_coord == record.get(i).x_coord && compare.y_coord == record.get(i).y_coord) {
+                            doEncounters(record.get(i), compare);
+                            if(record.get(i).energy <= 0){
+                                population.remove(record.get(i));
+                                record.set(i,null);
+                                i = i + 1;
+                            }
+                            else if(compare.energy <= 0){
+                                record.remove(compare);
+                                population.remove(compare);
+                            }
+                        }
                     }
-                    //if two died, then remove
-                    if(two.energy <= 0){
-                        iter2.remove();
-                    }
+                    compare = iter1.next();
                 }
             }
         }
