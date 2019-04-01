@@ -191,7 +191,11 @@ public abstract class Critter {
         boolean twoChoice =(two.fight(one.toString()));
 
         //if both want to fight
-        if(!(oneChoice == twoChoice && !oneChoice) && (one.energy>0) && (two.energy>0) && (one.x_coord == two.x_coord) && (one.y_coord == two.y_coord)) {
+        if(one.x_coord != two.x_coord || one.y_coord != two.y_coord || one.energy <= 0 || two.energy <= 0){
+            return;
+        }
+        else
+            {
             int oneNum;
             int twoNum;
             if (oneChoice) {
@@ -221,10 +225,10 @@ public abstract class Critter {
    
     public static void displayWorld() {
         // TODO: Complete this method
-        String[][] world = new String[Params.WORLD_WIDTH + 2][Params.WORLD_HEIGHT + 2];
+        String[][] world = new String[Params.WORLD_HEIGHT + 2][Params.WORLD_WIDTH + 2];
 
-        for (int i = 0; i < Params.WORLD_WIDTH + 2; i++) {
-            for (int j = 0; j < Params.WORLD_HEIGHT + 2; j++) {
+        for (int i = 0; i < Params.WORLD_HEIGHT + 2; i++) {
+            for (int j = 0; j < Params.WORLD_WIDTH + 2; j++) {
                 if ((i == 0 && (j == 0 || j == Params.WORLD_WIDTH + 1)) || (i == Params.WORLD_HEIGHT + 1 && (j == 0 || j == Params.WORLD_WIDTH + 1))) {
                     world[i][j] = "+";
                 }
@@ -244,8 +248,8 @@ public abstract class Critter {
             world[critter.y_coord][critter.x_coord] = critter.toString();
         }
 
-        for (int i = 0; i < Params.WORLD_WIDTH + 2; i++) {
-            for (int j = 0; j < Params.WORLD_HEIGHT + 2; j++) {
+        for (int i = 0; i < Params.WORLD_HEIGHT + 2; i++) {
+            for (int j = 0; j < Params.WORLD_WIDTH + 2; j++) {
                 System.out.print(world[i][j]);
             }
             System.out.println();
@@ -404,9 +408,9 @@ public abstract class Critter {
     protected final void reproduce(Critter offspring, int direction) {
         // TODO: Complete this method
         //check if parent has energy
-        if(this.energy > Params.MIN_REPRODUCE_ENERGY){
-            offspring.energy = this.energy/2;
-            this.energy = Math.round(this.energy/(float)2);
+        if (this.energy > Params.MIN_REPRODUCE_ENERGY) {
+            offspring.energy = this.energy / 2;
+            this.energy = Math.round(this.energy / (float)2);
             offspring.move(direction);
             babies.add(offspring);
         }
