@@ -170,56 +170,38 @@ public abstract class Critter {
                 population.remove(population.get(i));
             }
         }
-//doEncounters
-//        Iterator<Critter> iter1 = population.iterator();
-//        Iterator<Critter> iter2 = population.iterator();
-//        iter1.next();
-//
-//        while(iter1.hasNext()){
-//            Critter one = iter1.next();
-//            while(iter2.hasNext()) {
-//                Critter two = iter2.next();
-//                //if same position, do encounters
-//                if(one.y_coord==two.y_coord && one.x_coord == two.x_coord){
-//                    doEncounters(one,two);
-//                    //if one died, then remove
-//                    if(one.energy <= 0){
-//                        iter1.remove();
-//                    }
-//                    //if two died, then remove
-//                    if(two.energy <= 0){
-//                        iter2.remove();
-//                    }
-//                }
-//            }
-//        }
-        
-        List<Critter> record = population;
 
-        for(int i = 0; i < record.size(); i++) {
-            if (population.contains(record.get(i))) {
-                Iterator<Critter> iter1 = population.iterator();
-                Critter compare = iter1.next();
+        // Handling Encounters
+        ArrayList<Critter> critterDead = new ArrayList<>();
 
-                while (iter1.hasNext()) {
-                    if (!(compare.equals(record.get(i)))) {
-                        if (compare.x_coord == record.get(i).x_coord && compare.y_coord == record.get(i).y_coord) {
-                            doEncounters(record.get(i), compare);
-                            if(record.get(i).energy <= 0){
-                                population.remove(record.get(i));
-                                record.set(i,null);
-                                i = i + 1;
-                            }
-                            else if(compare.energy <= 0){
-                                record.remove(compare);
-                                population.remove(compare);
-                            }
+        for (int i = 0; i < population.size(); i++) {
+            Critter critter = population.get(i);
+            if (!critterDead.contains(critter)) {
+                Iterator<Critter> iter = population.iterator();
+                while (iter.hasNext()) {
+                    Critter critterCompare = iter.next();
+                    if (!critterDead.contains(critterCompare) && !critter.equals(critterCompare) && critter.x_coord == critterCompare.x_coord && critter.y_coord == critterCompare.y_coord) {
+                        doEncounters(critter, critterCompare);
+                        System.out.println("Checking Who Died");
+                        if (critter.energy <= 0) {
+                            critterDead.add(critter);
+                            break;
+                        }
+                        else if (critterCompare.energy <= 0) {
+                            critterDead.add(critterCompare);
                         }
                     }
-                    compare = iter1.next();
                 }
             }
         }
+
+        // Removing the dead critters from population
+        for(int i = 0; i < critterDead.size(); i++){
+            if(population.contains(critterDead.get(i))){
+                population.remove(critterDead.get(i));
+            }
+        }
+
         //subtract rest energy
         updateRestEnergy();
         //generate clovers
@@ -245,8 +227,8 @@ public abstract class Critter {
         for(int i = 0; i < Params.REFRESH_CLOVER_COUNT; i++){
             Critter newClover = new Clover();
             newClover.energy = Params.START_ENERGY;
-            newClover.x_coord = rand.nextInt(Params.WORLD_WIDTH);
-            newClover.y_coord = rand.nextInt(Params.WORLD_HEIGHT);
+            newClover.x_coord = (rand.nextInt(Params.WORLD_WIDTH) + 1);
+            newClover.y_coord = (rand.nextInt(Params.WORLD_HEIGHT) + 1);
             population.add(newClover);
 
         }
