@@ -12,10 +12,14 @@ package assignment4;
  * Spring 2019
  */
 
+import org.omg.CORBA.DynAnyPackage.Invalid;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.io.*;
+import java.util.*;
+import java.lang.reflect.*;
 
 
 /*
@@ -83,19 +87,37 @@ public class Main {
 
         switch(userInputSplit[0]) {
             case "quit":
+                if (userInputSplit.length > 1) {
+                    System.out.println("error processing: " + userInput);
+                    break;
+                }
                 kb.close();
                 return;
 
             case "show":
+                if (userInputSplit.length > 1) {
+                    System.out.println("error processing: " + userInput);
+                    break;
+                }
                 Critter.displayWorld();
                 break;
 
             case "step":
+                if (userInputSplit.length > 2) {
+                    System.out.println("error processing: " + userInput);
+                    break;
+                }
                 if (userInputSplit.length > 1) {
-                    CritterWorld.timeStep = Integer.parseInt(userInputSplit[1]);
+                    try {
+                        CritterWorld.timeStep = Integer.parseInt(userInputSplit[1]);
+                    } catch (NumberFormatException | NullPointerException nfe) {
+                        System.out.println("error processing: " + userInput);
+                        break;
+                    }
                 } else {
                     CritterWorld.timeStep = 1;
                 }
+
                 for (int i = 0; i < CritterWorld.timeStep; i++) {
                     Critter.worldTimeStep();
                 }
@@ -103,7 +125,7 @@ public class Main {
 
             case "seed":
                 if (userInputSplit.length != 2) {
-                    System.out.println("Unknown Command");
+                    System.out.println("error processing: " + userInput);
                     break;
                 }
 
@@ -112,14 +134,19 @@ public class Main {
 
             case "create":
                 if (userInputSplit.length > 3 || userInputSplit.length < 2) {
-                    System.out.println("Unknown Command");
+                    System.out.println("error processing: " + userInput);
                     break;
                 }
 
                 String critterType = userInputSplit[1];
                 int critterNum = 1;
                 if (userInputSplit.length > 2) {
-                    critterNum = Integer.parseInt(userInputSplit[2]);
+                    try {
+                        critterNum = Integer.parseInt(userInputSplit[2]);
+                    } catch (NumberFormatException | NullPointerException nfe) {
+                        System.out.println("error processing: " + userInput);
+                        break;
+                    }
                 }
                 for (int i = 0; i < critterNum; i++) {
                     try {
@@ -133,28 +160,43 @@ public class Main {
 
             case "stats":
                 if (userInputSplit.length != 2) {
-                    System.out.println("Unknown Command");
+                    System.out.println("error processing: " + userInput);
                     break;
                 }
-
                 critterType = userInputSplit[1];
                 try {
-                    List<Critter> critterInstances = new ArrayList<>();
-                    critterInstances = Critter.getInstances(critterType);
-                    Critter.runStats(critterInstances);
+                    Critter.getInstances(critterType);
+                    List<Critter> critterList = Critter.getInstances(critterType);
+
+                    try {
+                        Class<?> critterClass = Class.forName(myPackage + "." + critterType);
+                        Method m = critterClass.getMethod("runStats", List.class);
+                        m.invoke(null, critterList);
+                    }
+                    catch (InvocationTargetException | ClassNotFoundException | IllegalAccessException e) {
+                        System.out.println(e);
+                        commandInterpreter(kb);
+                    }
+                    catch (NoSuchMethodException e) {
+                        critterList = Critter.getInstances("Critter");
+                        Critter.runStats(critterList);
+                    }
+                } catch (InvalidCritterException e) {
+                    System.out.println("error processing: " + userInput);
                 }
-                catch (InvalidCritterException e) {
-                    System.out.println(e);
-                    commandInterpreter(kb);
-                }
+
                 break;
 
             case "clear":
+                if (userInputSplit.length > 1) {
+                    System.out.println("error processing: " + userInput);
+                    break;
+                }
                 Critter.clearWorld();
                 break;
 
             default:
-                System.out.println("Unknown Command");
+                System.out.println("error processing: " + userInput);
                 break;
         }
         commandInterpreter(kb);

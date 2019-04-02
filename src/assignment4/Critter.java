@@ -67,25 +67,7 @@ public abstract class Critter {
      */
     public static void createCritter(String critter_class_name) throws InvalidCritterException {
         // TODO: Complete this method
-//        try {
-//            Class critterTest = Class.forName(myPackage + "." + critter_class_name);
-//            if (critterTest.isAssignableFrom(Critter.class)) {
-//                Critter critterNew = (Critter)critterTest.newInstance();
-//                critterNew.energy = Params.START_ENERGY;
-//                critterNew.x_coord = rand.nextInt(Params.WORLD_WIDTH);
-//                critterNew.y_coord = rand.nextInt(Params.WORLD_HEIGHT);
-//                population.add(critterNew);
-//            }
-//        }
-//        catch (ClassNotFoundException e) {
-//            throw new InvalidCritterException(critter_class_name);
-//        }
-//        catch (InstantiationException e) {
-//            throw new InvalidCritterException(critter_class_name);
-//        }
-//        catch (IllegalAccessException e) {
-//            throw new InvalidCritterException(critter_class_name);
-//        }
+
         Class<?> critterTest;
         Object object;
         Constructor<?> critterConstructor;
@@ -182,7 +164,6 @@ public abstract class Critter {
                     Critter critterCompare = iter.next();
                     if (!critterDead.contains(critterCompare) && !critter.equals(critterCompare) && critter.x_coord == critterCompare.x_coord && critter.y_coord == critterCompare.y_coord) {
                         doEncounters(critter, critterCompare);
-                        System.out.println("Checking Who Died");
                         if (critter.energy <= 0) {
                             critterDead.add(critter);
                             break;
@@ -214,11 +195,13 @@ public abstract class Critter {
     //this method subtracts rest energy from the population of critters
     //AND removes the dead ones
     private static void updateRestEnergy(){
-
         for(Critter i : population){
             i.energy -= Params.REST_ENERGY_COST;
-            if(i.energy <= 0){
-                population.remove(i);
+        }
+
+        for (Iterator<Critter> iter = population.iterator(); iter.hasNext();) {
+            if (iter.next().energy <= 0) {
+                iter.remove();
             }
         }
     }
