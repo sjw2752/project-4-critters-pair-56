@@ -25,7 +25,7 @@ public class Critter3 extends Critter {
 
     /**
      * Fights only when the opponent Critter is not Critter2
-     * @Params String className of the opposing Critter
+     * @param String className of the opposing Critter
      */
     @Override
     public boolean fight(String opponent) {
