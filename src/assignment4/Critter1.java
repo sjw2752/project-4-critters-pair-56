@@ -27,7 +27,7 @@ public class Critter1 extends Critter {
     }
     /**
      * Doesn't move. Only fights if energy is <= 50
-     * @Params String className of the opposing Critter
+     * @param String className of the opposing Critter
      */
     @Override
     public boolean fight(String opponent) {
