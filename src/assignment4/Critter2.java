@@ -25,6 +25,7 @@ public class Critter2 extends Critter{
 
     /**
      * Reproduces if Critter's energy is >= 150, walks straight up, and never wants to fight
+     * @Params String className of the opposing Critter
      */
     @Override
     public boolean fight(String opponent) {
