@@ -17,7 +17,7 @@ public class Critter4 extends Critter{
     
     // Reproduce Critter
     // If energy is > 20, always reproduce and never fight
-``  /**
+  /**
      * Walks in the right direction
      */
     @Override
