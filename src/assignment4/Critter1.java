@@ -13,12 +13,11 @@ package assignment4;
  * Spring 2019
  */
 
-
 public class Critter1 extends Critter {
-    // Gambler Critter
-    // fights if energy is <= half energy
-    // doesn't move
 
+    /**
+     * Reproduces if energy is above 50
+     */
     @Override
     public void doTimeStep() {
         if (getEnergy() > 50) {
@@ -26,7 +25,9 @@ public class Critter1 extends Critter {
             reproduce(critterBaby, getRandomInt(8));
         }
     }
-
+    /**
+     * Doesn't move. Only fights if energy is <= 50
+     */
     @Override
     public boolean fight(String opponent) {
         return (getEnergy() <= 50);
