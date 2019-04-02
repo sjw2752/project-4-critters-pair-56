@@ -1,6 +1,6 @@
 package assignment4;
 
-/* CRITTERS Critter.java
+/* CRITTERS Critter1.java
  * EE422C Project 4 submission by
  * Replace <...> with your actual data.
  * Sam Wang
@@ -10,7 +10,7 @@ package assignment4;
  * ih4548
  * 16215
  * Slip days used: <0>
- * Fall 2016
+ * Spring 2019
  */
 
 
