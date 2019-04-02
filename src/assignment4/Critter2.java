@@ -13,16 +13,19 @@ package assignment4;
  * Spring 2019
  */
 
-
 public class Critter2 extends Critter{
-    // Up Critter
-    // Always moves up
 
+    /**
+     * Walks straight up 
+     */
     @Override
     public void doTimeStep() {
         walk(2);
     }
 
+    /**
+     * Reproduces if Critter's energy is >= 150, walks straight up, and never wants to fight
+     */
     @Override
     public boolean fight(String opponent) {
         if (getEnergy() >= 150) {
