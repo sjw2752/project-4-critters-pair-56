@@ -1,13 +1,14 @@
 package assignment4;
+
 /* CRITTERS Main.java
  * EE422C Project 4 submission by
  * Replace <...> with your actual data.
  * Sam Wang
  * sjw2752
- * <Student1 5-digit Unique No.>
- * <Student2 Name>
- * <Student2 EID>
- * <Student2 5-digit Unique No.>
+ * 16215
+ * Iris Ham
+ * ih4548
+ * 16215
  * Slip days used: <0>
  * Spring 2019
  */
