@@ -14,14 +14,22 @@ package assignment4;
  */
 
 public class Critter4 extends Critter{
+    
     // Reproduce Critter
     // If energy is > 20, always reproduce and never fight
-
+``  /**
+     * Walks in the right direction
+     */
     @Override
     public void doTimeStep() {
         walk(0);
     }
-
+    
+    /**
+     * Reproduces in the Critter's energy is greater than 20. Only wants to fight if reproduction is unsuccessful.
+     *
+     * @param String className of the opposing Critter
+     */
     @Override
     public boolean fight(String opponent) {
         if (getEnergy() > 20) {
