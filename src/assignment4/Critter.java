@@ -45,10 +45,6 @@ public abstract class Critter {
 
     private static java.util.Random rand = new java.util.Random();
 
-    Critter(){
-        energy = Params.START_ENERGY;
-    }
-
     public static int getRandomInt(int max) {
         return rand.nextInt(max);
     }
@@ -140,6 +136,9 @@ public abstract class Critter {
         displayWorld();
     }
 
+     /**
+     * stimulates one time step for each critter in the critter collection, checks for critters occupying same location.
+     */
     public static void worldTimeStep() {
         // TODO: Complete this method
         //doTimeStep for each critter
@@ -192,8 +191,9 @@ public abstract class Critter {
         babies.clear();
     }
     
-    //this method subtracts rest energy from the population of critters
-    //AND removes the dead ones
+     /**
+     * Subtracts rest energy from the critters in the population and removes critters that die from this subtraction. Is called in worldTimeStep().
+     */
     private static void updateRestEnergy(){
         for(Critter i : population){
             i.energy -= Params.REST_ENERGY_COST;
@@ -205,7 +205,9 @@ public abstract class Critter {
             }
         }
     }
-
+     /**
+     * generates REFRESH_CLOVER_COUNT clovers. Is called in worldTimeStep().
+     */
     private static void genClover(){
         for(int i = 0; i < Params.REFRESH_CLOVER_COUNT; i++){
             Critter newClover = new Clover();
@@ -216,7 +218,11 @@ public abstract class Critter {
 
         }
     }
-    
+    /**
+     * resolves a situation when two or more critters occupy the same location
+     *
+     * @param Critter two Critter objects that occupy the same locatoin
+     */
     private static void doEncounters(Critter one, Critter two){
 
         boolean oneChoice = (one.fight(two.toString()));
@@ -254,7 +260,9 @@ public abstract class Critter {
 
     }
     
-   
+    /**
+     * Prints the world and the critters at their specific locations
+     */
     public static void displayWorld() {
         // TODO: Complete this method
         String[][] world = new String[Params.WORLD_HEIGHT + 2][Params.WORLD_WIDTH + 2];
@@ -320,13 +328,21 @@ public abstract class Critter {
     protected int getEnergy() {
         return energy;
     }
-
+    /**
+     * Moves the critter in a specific direction  and subtracts the walk energy cost from the Critter's energy
+     *
+     * @param int the direction which the critter will be moved
+     */
     protected final void walk(int direction) {
         // TODO: Complete this method
         move(direction);
         this.energy = this.energy - Params.WALK_ENERGY_COST;
     }
-
+    /**
+     * Moves the critter twice in a specific direction and subtracts the specified run energy cost from the Critter's energy
+     *
+     * @param int the direction which the critter will be moved
+     */
     protected final void run(int direction) {
         // TODO: Complete this method
         move(direction);
@@ -334,7 +350,11 @@ public abstract class Critter {
         this.energy = this.energy - Params.RUN_ENERGY_COST;
     }
 
-    //this method changes the coordinates and is called by run and walk methods
+    /**
+     * Changes the x and y coordinates of the Critter
+     *
+     * @param int the direction which determines how the x and y coordinates are changed
+     */
     private void move(int direction){
         switch (direction){
             //straight right
@@ -436,7 +456,14 @@ public abstract class Critter {
         }
     }
 
-    
+    /**
+     * The offspring will be adjacent to the parent and half its parent's
+     * energy (rounded down) while the parent loses half of its
+     * energy(rounded up). Only occurs if the parent has enough energy
+     *
+     * @param Critter Critter object that will be modified with the offspring's data given the reproduction was successful
+     * @param int the direction which the offspring will move to be adjacent to the parent
+     */
     protected final void reproduce(Critter offspring, int direction) {
         // TODO: Complete this method
         //check if parent has energy

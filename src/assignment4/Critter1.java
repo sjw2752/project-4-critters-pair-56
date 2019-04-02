@@ -1,10 +1,23 @@
 package assignment4;
 
-public class Critter1 extends Critter {
-    // Gambler Critter
-    // fights if energy is <= half energy
-    // doesn't move
+/* CRITTERS Critter1.java
+ * EE422C Project 4 submission by
+ * Replace <...> with your actual data.
+ * Sam Wang
+ * sjw2752
+ * 16215
+ * Iris Ham
+ * ih4548
+ * 16215
+ * Slip days used: <0>
+ * Spring 2019
+ */
 
+public class Critter1 extends Critter {
+
+    /**
+     * Reproduces if energy is above 50
+     */
     @Override
     public void doTimeStep() {
         if (getEnergy() > 50) {
@@ -12,7 +25,10 @@ public class Critter1 extends Critter {
             reproduce(critterBaby, getRandomInt(8));
         }
     }
-
+    /**
+     * Doesn't move. Only fights if energy is <= 50
+     * @param String className of the opposing Critter
+     */
     @Override
     public boolean fight(String opponent) {
         return (getEnergy() <= 50);
