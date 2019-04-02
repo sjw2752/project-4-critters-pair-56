@@ -14,15 +14,19 @@ package assignment4;
  */
 
 public class Critter3 extends Critter {
-    // Diagonal Left Down Critter
-    // Run Diagonally Left Down
 
-
+    /**
+     * Runs in the diagonal left down direction
+     */
     @Override
     public void doTimeStep() {
         run(5);
     }
 
+    /**
+     * Fights only when the opponent Critter is not Critter2
+     * @Params String className of the opposing Critter
+     */
     @Override
     public boolean fight(String opponent) {
         return (!opponent.equals("Critter2"));
